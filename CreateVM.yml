@@ -1,6 +1,6 @@
 ---
 - name: Create VM in Proxmox
-  hosts: all
+  hosts: host1
   gather_facts: no
 
   vars_prompt:
