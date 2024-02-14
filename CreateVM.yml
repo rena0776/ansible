@@ -1,6 +1,6 @@
 ---
 - name: Create VM in Proxmox
-  hosts: pvenodes
+  hosts: localhost
   gather_facts: no
 
   vars_prompt:
@@ -10,11 +10,17 @@
       prompt: "Enter the Proxmox node to use:"
 
   vars:
-    proxmox_user: root
-    proxmox_password: root14
+    proxmox_host: 10.131.9.159
+    proxmox_user: "root"
+    proxmox_password: "root14"
     vm_id: 9000  # Adjust as needed
 
   tasks:
+    - name: Install proxmoxer library
+      pip:
+        name: proxmoxer
+        state: present
+
     - name: Create VM
       community.general.proxmox_kvm:
         api_user: "{{ proxmox_user }}"
