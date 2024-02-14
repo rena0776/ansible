@@ -1,6 +1,6 @@
-semaphore:
+
 - name: Create admin user
-  hosts: all
+  hosts: semaphore
   become: true
   tasks: 
     - name: Admin user
