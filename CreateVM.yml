@@ -1,6 +1,6 @@
 ---
 - name: Create VM in Proxmox
-  hosts: pvenodes
+  hosts: all
   gather_facts: no
 
   vars_prompt:
@@ -10,7 +10,7 @@
       prompt: "Enter the Proxmox node to use:"
 
   vars:
-    proxmox_host: pvenodes
+    proxmox_host: pvenodes2
     proxmox_user: root
     proxmox_password: root14
     vm_id: 9000  # Adjust as needed
