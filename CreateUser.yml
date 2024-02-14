@@ -1,11 +1,11 @@
-name: user 
-hosts: all
-become: true
-tasks: 
- - name: Admin user
-   ansible.builtin.user: 
-    name: admin
-    password: "{{ 'password' | password_hash('sha512', 'root') }}"
-    state: present
-    shell: "/bin/bash"
-    generate_ssh_key: true
+- name: user 
+  hosts: all
+  become: true
+  tasks: 
+   - name: Admin user
+     ansible.builtin.user: 
+     name: admin
+     password: "{{ 'password' | password_hash('sha512', 'root') }}"
+     state: present
+     shell: "/bin/bash"
+     generate_ssh_key: true
