@@ -1,0 +1,1 @@
+ansible pvenodes -i inventory -m ping --user=root -k
