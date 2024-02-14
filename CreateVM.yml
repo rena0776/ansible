@@ -1,6 +1,6 @@
 ---
 - name: Create VM in Proxmox
-  hosts: localhost
+  hosts: pvenodes
   gather_facts: no
 
   vars_prompt:
