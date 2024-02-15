@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Prompt for user input
-read -p '"Enter the name for the new VM: "' VM_NAME
-read -p '"Enter the Proxmox node to use: "' PROXMOX_NODE
-read -p '"Enter the path to the OS template on the local Proxmox server: "' OSTEMPLATE
+when: read -p '"Enter the name for the new VM: "' VM_NAME
+when: read -p '"Enter the Proxmox node to use: "' PROXMOX_NODE
+when: read -p '"Enter the path to the OS template on the local Proxmox server: "' OSTEMPLATE
 
 # Additional configuration
 PROXMOX_HOST="10.131.9.159"
