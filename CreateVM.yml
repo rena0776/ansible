@@ -1,10 +1,7 @@
----  
+---
 - name: Create VM in Proxmox
   hosts: pvenodes
   gather_facts: no
-
-- name: install pip3
-  apt: name=python3-pip state=present 
 
   vars_prompt:
     - name: vm_name
@@ -19,6 +16,11 @@
     vm_id: 9000  # Adjust as needed
 
   tasks:
+    - name: install pip3
+      apt: 
+        name: python3-pip 
+        state: present 
+
     - name: Install proxmoxer library
       pip:
         name: proxmoxer
