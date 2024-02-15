@@ -26,6 +26,7 @@
       pip:
         name: proxmoxer
         state: present
+        become: yes
 
     - name: Create VM
       community.general.proxmox_kvm:
