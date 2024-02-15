@@ -1,51 +1,33 @@
-- name: Create VM in Proxmox
-  hosts: pvenodes
-  gather_facts: no
+#!/bin/bash
 
-  vars_prompt:
-    - name: vm_name
-      prompt: "Enter the name for the new VM:"
-    - name: proxmox_node
-      prompt: "Enter the Proxmox node to use:"
+# Prompt for user input
+read -p "Enter the name for the new VM: " VM_NAME
+read -p "Enter the Proxmox node to use: " PROXMOX_NODE
+read -p "Enter the path to the OS template on the local Proxmox server: " OSTEMPLATE
 
-  vars:
-    proxmox_host: 10.131.9.159
-    proxmox_user: "root"
-    proxmox_password: "root14"
-    vm_id: 9000  # Adjust as needed
+# Additional configuration
+PROXMOX_HOST="10.131.9.159"
+PROXMOX_USER="root@pam"
+PROXMOX_PASSWORD="root14"
+VM_ID="9000"  # Adjust as needed
+MEMORY="512"
+CORES="1"
+NETWORK="virtio,bridge=vmbr0"
+DISK="vm:16,format=qcow2,size=8G"
 
-  tasks:
-    - name: Install python3-pip
-      ansible.builtin.package:
-        name: python3-pip
-        state: present
-      become: yes
-
-    - name: Install proxmoxer library
-      ansible.builtin.pip:
-        name: proxmoxer
-        state: present
-      become: yes
-
-    - name: Create VM
-      ansible.builtin.uri:
-        url: "https://{{ proxmox_host }}/api2/json/nodes/{{ proxmox_node }}/qemu"
-        method: POST
-        headers:
-          Content-Type: "application/json"
-        user: "{{ proxmox_user }}"
-        password: "{{ proxmox_password }}"
-        body_format: json
-        body: |
-          {
-            "vmid": "{{ vm_id }}",
-            "name": "{{ vm_name }}",
-            "ostype": "l26", 
-            "ide2": "local:iso/debian-10.0-standard_10.0-1_amd64.iso,media=cdrom",
-            "sockets": "1",
-            "cores": "1",
-            "memory": "512",
-            "net0": "virtio,bridge=vmbr0",
-            "virtio0": "vm:16,format=qcow2,size=8G"
-          }
-        status_code: 201
+# Create the VM
+curl -k -s -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "vmid": "'"$VM_ID"'",
+    "name": "'"$VM_NAME"'",
+    "ostype": "l26",
+    "ide2": "'"$OSTEMPLATE"',media=cdrom",
+    "sockets": "1",
+    "cores": "'"$CORES"'",
+    "memory": "'"$MEMORY"'",
+    "net0": "'"$NETWORK"'",
+    "virtio0": "'"$DISK"'"
+  }' \
+  -u "$PROXMOX_USER:$PROXMOX_PASSWORD" \
+  "https://$PROXMOX_HOST/api2/json/nodes/$PROXMOX_NODE/qemu"
