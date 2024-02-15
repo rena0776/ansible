@@ -1,4 +1,7 @@
 ---
+- name: install pip3
+  apt: name=python3-pip state=present 
+  
 - name: Create VM in Proxmox
   hosts: pvenodes
   gather_facts: no
