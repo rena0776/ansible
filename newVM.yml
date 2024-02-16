@@ -1,0 +1,9 @@
+- name: Test Connection
+  hosts: pvenodes
+  become: true
+  become_user: root
+  vars:
+    ansible_password: root14
+  tasks:
+    - name: Ping
+      ping:
