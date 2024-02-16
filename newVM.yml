@@ -37,7 +37,7 @@
         api_user: root@pam
         api_password: root14
         node: rh
-        vmid: "602"
+        vmid: "603"
         state: present
       register: vm_creation_result
 
