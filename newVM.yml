@@ -2,42 +2,42 @@
     hosts: pve
     gather_facts: no
     vars_prompt:
-    - name: proxmox_node
-      prompt: "Enter the Proxmox node to use"
-    - name: vm_name
-      prompt: "Enter the name for the new VM"
-    - name: os_template
-      prompt: "Enter the name or ID of the OS template on the local Proxmox server"
-    - name: proxmox_host
-      prompt: "Enter the Proxmox server IP or hostname"
-    - name: proxmox_user
-      prompt: "Enter the Proxmox username"
-    - name: proxmox_password
-      prompt: "Enter the Proxmox password"
-      private: yes  # Masking the password input
-    - name: vm_id
-      prompt: "Enter the VM ID"
+        - name: proxmox_node
+         prompt: "Enter the Proxmox node to use"
+        - name: vm_name
+         prompt: "Enter the name for the new VM"
+       - name: os_template
+         prompt: "Enter the name or ID of the OS template on the local Proxmox server"
+       - name: proxmox_host
+         prompt: "Enter the Proxmox server IP or hostname"
+       - name: proxmox_user
+         prompt: "Enter the Proxmox username"
+       - name: proxmox_password
+         prompt: "Enter the Proxmox password"
+         private: yes  # Masking the password input
+       - name: vm_id
+         prompt: "Enter the VM ID"
 
     vars:
-    api_host: 10.131.9.140
-    api_user: root
-    api_password: root14
-    ansible_user: root 
-    ansible_ssh_pass: root14 
+      api_host: 10.131.9.140
+      api_user: root
+      api_password: root14
+      ansible_user: root 
+      ansible_ssh_pass: root14 
 
    tasks:
-  - name: Convert vm_id to integer
+    - name: Convert vm_id to integer
       set_fact:
         vmid_int: "{{ vm_id | int }}"
 
-  - name: Create VM on Proxmox
-  proxmox_kvm:
-    api_host: "{{ api_host }}"
-    api_user: "{{ api_user }}"
-    api_password: "{{ api_password }}"  # Including the API password for authentication
-    node: "{{ proxmox_node }}"
-    vmid: "{{ vmid_int }}"
-    ostype: "{{ os_template }}"  # Use 'ostype' instead of 'ostemplate'
-    state: present
-  register: vm_creation_result
+    - name: Create VM on Proxmox
+      proxmox_kvm:
+        api_host: "{{ api_host }}"
+        api_user: "{{ api_user }}"
+        api_password: "{{ api_password }}"  # Including the API password for authentication
+        node: "{{ proxmox_node }}"
+        vmid: "{{ vmid_int }}"
+        ostype: "{{ os_template }}"  # Use 'ostype' instead of 'ostemplate'
+        state: present
+      register: vm_creation_result
 
