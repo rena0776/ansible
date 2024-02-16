@@ -1,31 +1,29 @@
-  - name: VM
-    hosts: pve
-    gather_facts: no
-    vars_prompt:
-        - name: proxmox_node
-         prompt: "Enter the Proxmox node to use"
-        - name: vm_name
-         prompt: "Enter the name for the new VM"
-       - name: os_template
-         prompt: "Enter the name or ID of the OS template on the local Proxmox server"
-       - name: proxmox_host
-         prompt: "Enter the Proxmox server IP or hostname"
-       - name: proxmox_user
-         prompt: "Enter the Proxmox username"
-       - name: proxmox_password
-         prompt: "Enter the Proxmox password"
-         private: yes  # Masking the password input
-       - name: vm_id
-         prompt: "Enter the VM ID"
+- name: Create Virtual Machine on Proxmox
+  hosts: pve
+  gather_facts: no
+  vars_prompt:
+    - name: proxmox_node
+      prompt: "Enter the Proxmox node to use"
+    - name: vm_name
+      prompt: "Enter the name for the new VM"
+    - name: os_template
+      prompt: "Enter the name or ID of the OS template on the local Proxmox server"
+    - name: proxmox_host
+      prompt: "Enter the Proxmox server IP or hostname"
+    - name: proxmox_user
+      prompt: "Enter the Proxmox username"
+    - name: proxmox_password
+      prompt: "Enter the Proxmox password"
+      private: yes  # Masking the password input
 
-    vars:
-      api_host: 10.131.9.140
-      api_user: root
-      api_password: root14
-      ansible_user: root 
-      ansible_ssh_pass: root14 
+  vars:
+    api_host: "{{ proxmox_host }}"
+    api_user: "{{ proxmox_user }}"
+    api_password: "{{ proxmox_password }}"  # Providing the API password for authentication
+    ansible_user: root 
+    ansible_ssh_pass: root14 
 
-   tasks:
+  tasks:
     - name: Convert vm_id to integer
       set_fact:
         vmid_int: "{{ vm_id | int }}"
@@ -37,7 +35,11 @@
         api_password: "{{ api_password }}"  # Including the API password for authentication
         node: "{{ proxmox_node }}"
         vmid: "{{ vmid_int }}"
-        ostype: "{{ os_template }}"  # Use 'ostype' instead of 'ostemplate'
+        hostname: "{{ vm_name }}"
+        ostemplate: "{{ os_template }}"
         state: present
       register: vm_creation_result
 
+    - name: Print VM creation result
+      debug:
+        var: vm_creation_result
