@@ -3,6 +3,7 @@
   hosts: pvenodes
   become: true
   become_user: root
+  ansible_password: root14
   tasks:
     - name: Ping
       ping:
