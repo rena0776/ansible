@@ -18,7 +18,7 @@
     - name: vm_id
       prompt: "Enter the VM ID"
 
-  vars:
+    vars:
     api_host: 10.131.9.140
     api_user: root
     api_password: root14
@@ -26,11 +26,11 @@
     ansible_ssh_pass: root14 
 
   tasks:
-    - name: Convert vm_id to integer
+  - name: Convert vm_id to integer
       set_fact:
         vmid_int: "{{ vm_id | int }}"
 
-- name: Create VM on Proxmox
+  - name: Create VM on Proxmox
   proxmox_kvm:
     api_host: "{{ api_host }}"
     api_user: "{{ api_user }}"
