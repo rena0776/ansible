@@ -1,29 +1,32 @@
-- name: User
-  hosts: pve
-  become: true
-  become_user: root
-  vars:
-    ansible_password: root14
-    vars_prompt:
+---
+- name: Create Virtual Machine on Proxmox
+  hosts: localhost
+  gather_facts: no
+  vars_prompt:
     - name: proxmox_node
       prompt: "Enter the Proxmox node to use"
     - name: vm_name
       prompt: "Enter the name for the new VM"
     - name: os_template
-      prompt: "Enter the path to the OS template on the local Proxmox server"
+      prompt: "Enter the name or ID of the OS template on the local Proxmox server"
     - name: proxmox_host
       prompt: "Enter the Proxmox server IP or hostname"
     - name: proxmox_user
       prompt: "Enter the Proxmox username"
     - name: proxmox_password
       prompt: "Enter the Proxmox password"
-      private: yes
-tasks:
+      private: yes  # Masking the password input
+
+  vars:
+    ansible_user: root 
+    ansible_ssh_pass: root14 
+
+  tasks:
     - name: Create VM on Proxmox
       proxmox_kvm:
         node: "{{ proxmox_node }}"
-        vmid: "{{ vm_name }}"  # Use the VM name as the VMID
-        hostname: "{{ vm_name }}"  # Set hostname same as VM name
+        vmid: "{{ vm_name }}"
+        hostname: "{{ vm_name }}"
         password: "{{ proxmox_password }}"
         username: "{{ proxmox_user }}"
         ostemplate: "{{ os_template }}"
@@ -33,4 +36,3 @@ tasks:
     - name: Print VM creation result
       debug:
         var: vm_creation_result
- 
