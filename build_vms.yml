@@ -20,6 +20,4 @@
   become: false
   gather_facts: false
 
-  roles:
-  # Create VMs
-    - create_vms
+ 
