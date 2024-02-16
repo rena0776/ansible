@@ -9,9 +9,6 @@
       password: root14
       validate_certs: False
       name: testvm_2
-      template: template_el7
       datacenter: ReReDa
-      folder: /DC1/vm
       state: poweredon
-      cluster: rh
       wait_for_ip_address: yes
