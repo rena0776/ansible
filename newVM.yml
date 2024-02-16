@@ -33,7 +33,7 @@
         api_host: "{{ api_host }}"
         api_user: "{{ api_user }}"
         node: "{{ proxmox_node }}"
-        vmid: "{{ vm_name }}"
+        vmid: "{{ vmid_int }}"
         hostname: "{{ vm_name }}"
         password: "{{ proxmox_password }}"
         username: "{{ proxmox_user }}"
