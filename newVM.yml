@@ -22,6 +22,7 @@
   vars:
     api_host: 10.131.9.140
     api_user: root
+    api_password: root14
     ansible_user: root 
     ansible_ssh_pass: root14 
 
@@ -34,6 +35,7 @@
       proxmox_kvm:
         api_host: "{{ api_host }}"
         api_user: "{{ api_user }}"
+        api_password: "{{ api_password }}"  # Including the API password for authenticatio
         node: "{{ proxmox_node }}"
         vmid: "{{ vmid_int }}"
         hostname: "{{ vm_name }}"
