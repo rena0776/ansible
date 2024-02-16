@@ -1,5 +1,5 @@
 - name: Create a VM from a template
-  hosts: localhost
+  hosts: pvenodes
   gather_facts: no
   become_user: root
   vars:
