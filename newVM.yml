@@ -30,7 +30,7 @@
       set_fact:
         vmid_int: "{{ vm_id | int }}"
 
-    - name: Create VM on Proxmox
+- name: Create VM on Proxmox
   proxmox_kvm:
     api_host: "{{ api_host }}"
     api_user: "{{ api_user }}"
