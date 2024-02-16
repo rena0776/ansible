@@ -18,5 +18,19 @@
     - name: proxmox_password
       prompt: "Enter the Proxmox password"
       private: yes
- tasks: 
+tasks:
+    - name: Create VM on Proxmox
+      proxmox_kvm:
+        node: "{{ proxmox_node }}"
+        vmid: "{{ vm_name }}"  # Use the VM name as the VMID
+        hostname: "{{ vm_name }}"  # Set hostname same as VM name
+        password: "{{ proxmox_password }}"
+        username: "{{ proxmox_user }}"
+        ostemplate: "{{ os_template }}"
+        state: present
+      register: vm_creation_result
+
+    - name: Print VM creation result
+      debug:
+        var: vm_creation_result
  
