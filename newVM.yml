@@ -27,9 +27,9 @@
     
 
   tasks:
-    - name: Convert vm_id to integer
-      set_fact:
-        vmid_int: "{{ vm_id | int }}"
+#    - name: Convert vm_id to integer
+ #     set_fact:
+  #      vmid_int: "{{ vm_id | int }}"
 
     - name: Create VM on Proxmox
       community.general.proxmox_kvm:
