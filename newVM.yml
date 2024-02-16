@@ -18,9 +18,9 @@
       prompt: "Enter the VM ID"
 
   vars:
-    api_host: "{{ proxmox_host }}"
-    api_user: "{{ proxmox_user }}"
-    api_password: "{{ proxmox_password }}"  # Providing the API password for authentication
+    api_host: rh
+    api_user: root
+    api_password: root14
     ansible_user: root 
     ansible_ssh_pass: root14 
 
