@@ -1,6 +1,6 @@
 ---
 - name: Create Virtual Machine on Proxmox
-  hosts: rh
+  hosts: pve
   gather_facts: no
   vars_prompt:
     - name: proxmox_node
@@ -18,10 +18,10 @@
       prompt: "Enter the VM ID"
 
   vars:
-    api_host: rh
+    api_host: pve
     api_user: root
     api_password: root14
-    ansible_user: root14
+    ansible_user: root
     ansible_password: root14
     ansible_ssh_pass: root14 
 
