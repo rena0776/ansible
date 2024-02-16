@@ -1,5 +1,10 @@
 #!/bin/bash
-
+-name: Brug denne bruger
+ hosts: pvenodes
+  become: true
+  become_user: root
+  vars:
+    ansible_password: root14
 
 # Prompt for user input
 read -p "Enter the name for the new VM: " VM_NAME
