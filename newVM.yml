@@ -21,7 +21,7 @@
     api_host: rh
     api_user: root
     api_password: root14
-    ansible_user: root 
+    ansible_user: root14
     ansible_ssh_pass: root14 
 
   tasks:
