@@ -10,7 +10,7 @@ PROXMOX_HOST="10.131.9.159"
 PROXMOX_USER="root@pam"
 PROXMOX_PASSWORD="root14"
 VM_ID="9000"  # Adjust as needed
-MEMORY="512"
+MEMORY="2048"
 CORES="1"
 NETWORK="virtio,bridge=vmbr0"
 DISK="vm:16,format=qcow2,size=8G"
