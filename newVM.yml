@@ -22,8 +22,7 @@
     api_user: root
     api_password: root14
     ansible_user: root
-    ansible_password: root14
-    ansible_ssh_pass: yes
+    ansible_ssh_pass: root14
 
   tasks:
     - name: Convert vm_id to integer
