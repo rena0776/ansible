@@ -19,7 +19,7 @@
 
   vars:
     api_host: pve
-    api_user: root
+    api_user: root@pam
     api_password: root14
     ansible_user: root
     ansible_password: root14
