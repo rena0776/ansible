@@ -32,18 +32,16 @@
         vmid_int: "{{ vm_id | int }}"
 
     - name: Create VM on Proxmox
-      proxmox_kvm:
-        api_host: "{{ api_host }}"
-        api_user: "{{ api_user }}"
-        api_password: "{{ api_password }}"  # Including the API password for authenticatio
-        node: "{{ proxmox_node }}"
-        vmid: "{{ vmid_int }}"
-        hostname: "{{ vm_name }}"
-        password: "{{ proxmox_password }}"
-        username: "{{ proxmox_user }}"
-        ostemplate: "{{ os_template }}"
-        state: present
-      register: vm_creation_result
+  proxmox_kvm:
+    api_host: "{{ api_host }}"
+    api_user: "{{ api_user }}"
+    api_password: "{{ api_password }}"  # Including the API password for authentication
+    node: "{{ proxmox_node }}"
+    vmid: "{{ vmid_int }}"
+    ostype: "{{ os_template }}"  # Use 'ostype' instead of 'ostemplate'
+    state: present
+  register: vm_creation_result
+
 
     - name: Print VM creation result
       debug:
