@@ -15,9 +15,9 @@
       prompt: "Enter the Proxmox username"
     - name: proxmox_password
       prompt: "Enter the Proxmox password"
+      private: yes  # Masking the password input
     - name: vm_id
       prompt: "Enter the VM ID"
-      private: yes  # Masking the password input
 
   vars:
     api_host: 10.131.9.140
