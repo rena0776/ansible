@@ -42,7 +42,3 @@
     state: present
   register: vm_creation_result
 
-
-    - name: Print VM creation result
-      debug:
-        var: vm_creation_result
