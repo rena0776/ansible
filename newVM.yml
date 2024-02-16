@@ -34,10 +34,10 @@
     - name: Create VM on Proxmox
       community.general.proxmox_kvm:
         api_host: 10.131.9.140
-        api_user: {{ "api_user" }}
-        api_password: {{ "api_password" }}
-        node: {{" proxmox_node "}}
-        vmid: {{" vm_id "}}
+        api_user: "{{ api_user }}"
+        api_password: "{{ api_password }}"
+        node: "{{ proxmox_node }}"
+        vmid: "{{ vm_id }}"
         state: present
       register: vm_creation_result
 
