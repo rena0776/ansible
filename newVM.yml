@@ -1,7 +1,7 @@
 name: Create VM
-  hosts: pve
-  gather_facts: no
-  vars_prompt:
+   hosts: pve
+   gather_facts: no
+   vars_prompt:
     - name: proxmox_node
       prompt: "Enter the Proxmox node to use"
     - name: vm_name
