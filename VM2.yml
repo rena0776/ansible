@@ -18,7 +18,7 @@
       private: yes
 
   tasks:
-    - name: Create VM on Proxmox
+   - name: Create VM on Proxmox
       uri:
         url: "https://{{ proxmox_host }}/api2/json/nodes/{{ proxmox_node }}/qemu"
         method: POST
