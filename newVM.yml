@@ -36,7 +36,6 @@
         api_password: "{{ api_password }}"  # Including the API password for authentication
         node: "{{ proxmox_node }}"
         vmid: "{{ vmid_int }}"
-        hostname: "{{ vm_name }}"
         state: present
       register: vm_creation_result
 
