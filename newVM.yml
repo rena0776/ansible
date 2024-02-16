@@ -23,6 +23,7 @@
     api_password: root14
     ansible_user: root14
     ansible_password: root14
+    ansible_ssh_pass: root14
     
 
   tasks:
