@@ -6,3 +6,6 @@
   tasks:
     - name: Ping
       ping:
+
+
+StrictHostKeyChecking=no
