@@ -26,6 +26,8 @@
   tasks:
     - name: Create VM on Proxmox
       proxmox_kvm:
+        api_host: "{{ api_host }}"
+        api_user: "{{ api_user }}"
         node: "{{ proxmox_node }}"
         vmid: "{{ vm_name }}"
         hostname: "{{ vm_name }}"
