@@ -1,3 +1,4 @@
+---
 - name: Create Virtual Machine on Proxmox
   hosts: pve
   gather_facts: no
@@ -15,13 +16,8 @@
     - name: proxmox_password
       prompt: "Enter the Proxmox password"
       private: yes  # Masking the password input
-
-  vars:
-    api_host: "{{ proxmox_host }}"
-    api_user: "{{ proxmox_user }}"
-    api_password: "{{ proxmox_password }}"  # Providing the API password for authentication
-    ansible_user: root 
-    ansible_ssh_pass: root14 
+    - name: vm_id
+      prompt: "Enter the VM ID"
 
   tasks:
     - name: Convert vm_id to integer
@@ -29,10 +25,10 @@
         vmid_int: "{{ vm_id | int }}"
 
     - name: Create VM on Proxmox
-      proxmox_kvm:
-        api_host: "{{ api_host }}"
-        api_user: "{{ api_user }}"
-        api_password: "{{ api_password }}"  # Including the API password for authentication
+      community.general.proxmox_kvm:
+        api_host: "{{ proxmox_host }}"
+        api_user: "{{ proxmox_user }}"
+        api_password: "{{ proxmox_password }}"
         node: "{{ proxmox_node }}"
         vmid: "{{ vmid_int }}"
         hostname: "{{ vm_name }}"
