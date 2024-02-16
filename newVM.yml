@@ -2,23 +2,23 @@
 - name: Create Virtual Machine on Proxmox
   hosts: pve
   gather_facts: no
-  vars_prompt:
-    - name: proxmox_node
-      prompt: "Enter the Proxmox node to use"
-    - name: vm_name
-      prompt: "Enter the name for the new VM"
-    - name: proxmox_host
-      prompt: "Enter the Proxmox server IP or hostname"
-    - name: proxmox_user
-      prompt: "Enter the Proxmox username"
-    - name: proxmox_password
-      prompt: "Enter the Proxmox password"
-      private: yes  # Masking the password input
-    - name: vm_id
-      prompt: "Enter the VM ID"
+  #vars_prompt:
+   # - name: proxmox_node
+    #  prompt: "Enter the Proxmox node to use"
+    #- name: vm_name
+     # prompt: "Enter the name for the new VM"
+    #- name: proxmox_host
+     # prompt: "Enter the Proxmox server IP or hostname"
+    #- name: proxmox_user
+     # prompt: "Enter the Proxmox username"
+    #- name: proxmox_password
+     # prompt: "Enter the Proxmox password"
+      #private: yes  # Masking the password input
+    #- name: vm_id
+     # prompt: "Enter the VM ID"
 
   vars:
-    api_host: pve
+    api_host: 10.131.9.140
     api_user: root@pam
     api_password: root14
     ansible_user: root
@@ -33,11 +33,11 @@
 
     - name: Create VM on Proxmox
       community.general.proxmox_kvm:
-        api_host: "{{ api_host }}"
-        api_user: "{{ api_user }}"
-        api_password: "{{ api_password }}"  # Including the API password for authentication
-        node: "{{ proxmox_node }}"
-        vmid: "{{ vmid_int }}"
+        api_host: 10.131.9.140
+        api_user: root@pam
+        api_password: root14
+        node: pve
+        vmid: "602"
         state: present
       register: vm_creation_result
 
