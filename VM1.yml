@@ -1,6 +1,9 @@
 - name: Create a VM from a template
   hosts: localhost
   gather_facts: no
+  become_user: root
+  vars:
+    ansible_password: root14
   tasks:
   - name: Clone the template
     vmware_guest:
