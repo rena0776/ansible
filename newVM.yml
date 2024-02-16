@@ -1,4 +1,4 @@
-- name: Create VM
+name: Create VM
   hosts: pve
   gather_facts: no
   vars_prompt:
