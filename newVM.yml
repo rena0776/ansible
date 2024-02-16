@@ -7,8 +7,6 @@
       prompt: "Enter the Proxmox node to use"
     - name: vm_name
       prompt: "Enter the name for the new VM"
-    - name: os_template
-      prompt: "Enter the name or ID of the OS template on the local Proxmox server"
     - name: proxmox_host
       prompt: "Enter the Proxmox server IP or hostname"
     - name: proxmox_user
@@ -39,7 +37,6 @@
         node: "{{ proxmox_node }}"
         vmid: "{{ vmid_int }}"
         hostname: "{{ vm_name }}"
-        ostype: "126"
         state: present
       register: vm_creation_result
 
