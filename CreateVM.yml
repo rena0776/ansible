@@ -6,7 +6,7 @@
 #read -p "Enter the path to the OS template on the local Proxmox server: " OSTEMPLATE
 
 # Additional configuration
-PROXMOX_HOST="10.131.9.159"
+PROXMOX_HOST="10.131.1.140"
 PROXMOX_USER="root@pam"
 PROXMOX_PASSWORD="root14"
 VM_ID="9000"  # Adjust as needed
