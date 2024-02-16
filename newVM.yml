@@ -18,8 +18,8 @@
       private: yes  # Masking the password input
 
   vars:
-    api_host: "{{ proxmox_host }}"  # Set the Proxmox API host
-    api_user: "{{ proxmox_user }}"  # Set the Proxmox API user
+    api_host: 10.131.9.140
+    api_user: root
     ansible_user: root 
     ansible_ssh_pass: root14 
 
