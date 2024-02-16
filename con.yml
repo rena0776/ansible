@@ -1,13 +1,12 @@
----
 - name: Test Connection
   hosts: pvenodes
   become: true
   become_user: root
-  uencrypted_password: root14
   vars:
-    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    ansible_password: root14
   tasks:
     - name: Ping
       ping:
+
 
 
