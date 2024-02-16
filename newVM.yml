@@ -4,7 +4,7 @@
   become_user: root
   vars:
     ansible_password: root14
-   vars_prompt:
+    vars_prompt:
     - name: proxmox_node
       prompt: "Enter the Proxmox node to use"
     - name: vm_name
