@@ -1,6 +1,6 @@
 ---
 - name: Create Virtual Machine on Proxmox
-  hosts: localhost
+  hosts: pve
   gather_facts: no
   vars_prompt:
     - name: proxmox_node
