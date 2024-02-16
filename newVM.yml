@@ -39,7 +39,7 @@
         node: "{{ proxmox_node }}"
         vmid: "{{ vmid_int }}"
         hostname: "{{ vm_name }}"
-        ostype: "{{ os_template }}"
+        ostype: "126"
         state: present
       register: vm_creation_result
 
