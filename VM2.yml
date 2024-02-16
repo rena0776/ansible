@@ -1,0 +1,47 @@
+---
+- name: Create Virtual Machine on Proxmox
+  hosts: pve
+  gather_facts: no
+  vars_prompt:
+    - name: proxmox_node
+      prompt: "Enter the Proxmox node to use"
+    - name: vm_name
+      prompt: "Enter the name for the new VM"
+    - name: os_template
+      prompt: "Enter the path to the OS template on the local Proxmox server"
+    - name: proxmox_host
+      prompt: "Enter the Proxmox server IP or hostname"
+    - name: proxmox_user
+      prompt: "Enter the Proxmox username"
+    - name: proxmox_password
+      prompt: "Enter the Proxmox password"
+      private: yes
+
+  tasks:
+    - name: Create VM on Proxmox
+      uri:
+        url: "https://{{ proxmox_host }}/api2/json/nodes/{{ proxmox_node }}/qemu"
+        method: POST
+        user: "{{ proxmox_user }}"
+        password: "{{ proxmox_password }}"
+        body_format: json
+        body: |
+          {
+            "vmid": "{{ vm_id }}",
+            "name": "{{ vm_name }}",
+            "ostype": "l26",
+            "ide2": "{{ os_template }},media=cdrom",
+            "sockets": "1",
+            "cores": "{{ cores }}",
+            "memory": "{{ memory }}",
+            "net0": "{{ network }}",
+            "virtio0": "{{ disk }}"
+          }
+        validate_certs: no
+        status_code: 200
+        return_content: yes
+      register: response
+
+    - name: Print response
+      debug:
+        var: response.json
