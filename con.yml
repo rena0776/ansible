@@ -3,7 +3,8 @@
   hosts: pvenodes
   become: true
   become_user: root
-  ansible_password: root14
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
   tasks:
     - name: Ping
       ping:
