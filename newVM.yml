@@ -37,7 +37,7 @@
         api_user: "{{ api_user }}"
         api_password: "{{ api_password }}"
         node: "{{ proxmox_node }}"
-        vmid: "{{ vm_id }}"
+        vmid: "{{ vmid_int }}"
         state: present
       register: vm_creation_result
 
